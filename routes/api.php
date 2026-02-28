@@ -8,6 +8,7 @@ use App\Http\Controllers\LocalisationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,12 +30,10 @@ Route::prefix('/user')->controller(UserController::class)->group(function (){
 
 
 
-Route::prefix('/categories')->controller(CategoryController::class)->group(function (){
-    Route::get('/' , 'index')->name('index') ;
-    Route::post('/store' , 'store')->name('categories.store') ;
-    Route::put('/update/{categorie}' , 'update')->name('categories.update') ;
-    Route::delete('/destroy/{categorie}' , 'destroy')->name('categories.destroy') ;
-}) ;
+Route::apiResource('categories' , CategoryController::class) ;
+Route::get('test', [TestController::class, 'test']);
+
+
 
 
 Route::prefix('/products')->controller(ProductController::class)->group(function (){
